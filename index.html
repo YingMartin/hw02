@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Home Work 2</title>
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <style>
+			p {
+				width: 100px;
+				height: 30px;
+				border: 2px solid #f00;
+				font-size: 20px;
+				text-align: center;
+				line-height: 30px;
+			}
+		</style>
+</head>
+<script>
+	function launch() {
+		d3.select("p").text(random(1911, 2016));
+	}
+	function doDraw() {
+    var theBody = d3.select("body");
+    var svg2 = theBody.append("svg").attr({
+        width: 300,
+        height: 200
+    });
+		svg2.append("rect").attr({
+			x: 0,
+			y: 0,
+			width: 300,
+			height: 200,
+			fill: "#FDF5E6"
+		});
+		for(var i=0;i<5;i++) {
+			svg2.append("rect").attr({
+				x: 0,
+				y: 44 + i*30,
+				width: 300,
+				height: 2
+			});
+		}
+    svg2.append("circle").attr({
+        cx: 150,
+        cy: 120,
+        r: 15
+    });
+    svg2.append("rect").attr({
+        x: 160,
+        y: 45,
+        width: 5,
+        height: 78
+    });
+		svg2.append("text").attr({
+			x: 140,
+			y: 195,
+			"font-size": 30,
+			"font-family": "arial"
+		}).text("A");
+    theBody.append("hr");
+    var svg4 = theBody.append("svg").attr({
+        width: 400,
+        height: 300
+    });
+    var tmpNum = 0;
+    for(i=0;i<20;i++) {
+        tmpNum = random(20, 300);
+        svg4.append("rect").attr({
+            x: 0,
+            y: i*12,
+            width: tmpNum,
+            height: 10,
+            fill: "#f00"
+        });
+        svg4.append("text").attr({
+            x: tmpNum + 15,
+            y: (i+1)*12-2,
+            "font-size": 12,
+            "font-family": "arial"
+        }).text(tmpNum);
+    }
+    theBody.append("hr");
+    var svg5 = theBody.append("svg").attr({
+        width: 400,
+        height: 300
+    });
+    var thePolyline = "0,0";
+    for(i=0;i<20;i++) {
+        tmpNum = random(20, 300);
+        thePolyline+=","+tmpNum+","+((i+1)*12);
+        svg5.append("circle").attr({
+            cx: tmpNum,
+            cy: (i+1)*12,
+            r: 4,
+            fill: "#f00"
+        });
+        svg5.append("text").attr({
+            x: tmpNum + 15,
+            y: (i+1)*12,
+            "font-size": 12,
+            "font-family": "arial"
+        }).text(tmpNum);
+    }
+    thePolyline+=",0,"+((i+1)*12);
+    svg5.append("polyline").attr({
+        points: thePolyline,
+        stroke: "#000",
+        fill: "rgba(0,0,0,0)"
+    });
+	}
+	function random(n, m) {
+			return Math.floor(Math.random()*(m-n+1)+n);
+	}
+</script>
+<body onload="doDraw();">
+
+<p></p>
+<input type="button" id="launchButton" onclick="launch();" value="啟動">
+<hr>
+
+</body>
+</html>
